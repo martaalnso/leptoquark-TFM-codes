@@ -1,0 +1,393 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13417,        385]
+NotebookOptionsPosition[     12389,        359]
+NotebookOutlinePosition[     12795,        375]
+CellTagsIndexPosition[     12752,        372]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Decay widths: approx vs. exact", "Title",
+ CellChangeTimes->{{3.9919679701701202`*^9, 
+  3.9919679793537445`*^9}},ExpressionUUID->"1f83434b-17da-d244-a41a-\
+40988751a78c"],
+
+Cell["\<\
+We want to check the improvement or not of considering the complete formula \
+for the decay width.\
+\>", "Subtitle",
+ CellChangeTimes->{{3.991967990088238*^9, 
+  3.9919680070707607`*^9}},ExpressionUUID->"86649147-b889-7d49-a1b7-\
+36aebaa343c5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Parameters", " ", "and", " ", "constants"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"mp", " ", "=", " ", "0.93827"}], " ", 
+    RowBox[{"(*", " ", "GeV", " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"me", " ", "=", " ", "0.000511"}], " ", 
+    RowBox[{"(*", " ", "GeV", " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mmu", "=", "0.10566"}], " ", 
+    RowBox[{"(*", " ", "GeV", " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mpi0", " ", "=", " ", "0.13498"}], " ", 
+    RowBox[{"(*", " ", "GeV", " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mpiPlus", " ", "=", " ", "0.139570"}], " ", 
+    RowBox[{"(*", " ", "GeV", " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mK", "=", "0.49368"}], " ", 
+    RowBox[{"(*", " ", "GeV", " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AL", "=", "2.5"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"W0", "=", "0.133"}], ";"}], " ", 
+   RowBox[{"(*", 
+    RowBox[{"GeV", "^", "2"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"W0K", " ", "=", " ", "0.076"}], " ", 
+    RowBox[{"(*", 
+     RowBox[{"GeV", "^", "2"}], "*)"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mLQ", "=", "10000"}], ";"}], " ", 
+   RowBox[{"(*", 
+    RowBox[{"Escala", " ", "del", " ", "leptoquark", " ", "en", " ", "GeV"}], 
+    "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.9919680263474903`*^9, 3.9919680329266033`*^9}, {
+  3.991968127759962*^9, 3.99196820268157*^9}, {3.991968348518381*^9, 
+  3.991968352120718*^9}, {3.9919685762019634`*^9, 3.991968584578411*^9}, {
+  3.991968675022569*^9, 3.991968686361107*^9}, {3.9919692087266808`*^9, 
+  3.991969243723404*^9}, {3.991969436229151*^9, 3.99196943653973*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"16712786-3d52-0a4d-949a-10690e808e68"],
+
+Cell[CellGroupData[{
+
+Cell["Prefactors", "Chapter",
+ CellChangeTimes->{{3.991968014767639*^9, 3.991968017623041*^9}, {
+  3.9919682635163746`*^9, 
+  3.991968268498396*^9}},ExpressionUUID->"82053abc-4fcc-3442-850d-\
+802e6a2344d5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"CM", " ", "momentum", " ", "for", " ", "each", " ", "channel"}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"pepi", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"2", "*", "mp"}], ")"}]}], ")"}], "*", 
+      RowBox[{"Sqrt", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"mp", "^", "2"}], "-", 
+           RowBox[{"me", "^", "2"}], "-", 
+           RowBox[{"mpi0", "^", "2"}]}], ")"}], "^", "2"}], "-", 
+        RowBox[{"4", "*", 
+         RowBox[{"me", "^", "2"}], "*", 
+         RowBox[{"mpi0", "^", "2"}]}]}], "]"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"pmupi", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"2", "*", "mp"}], ")"}]}], ")"}], "*", 
+      RowBox[{"Sqrt", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"mp", "^", "2"}], "-", 
+           RowBox[{"mmu", "^", "2"}], "-", 
+           RowBox[{"mpi0", "^", "2"}]}], ")"}], "^", "2"}], "-", 
+        RowBox[{"4", "*", 
+         RowBox[{"mmu", "^", "2"}], "*", 
+         RowBox[{"mpi0", "^", "2"}]}]}], "]"}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"pnuPi", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"2", "*", "mp"}], ")"}]}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"mp", "^", "2"}], "-", 
+        RowBox[{"mpiPlus", "^", "2"}]}], ")"}]}]}], ";"}], " ", "\n", 
+   RowBox[{
+    RowBox[{"pnuK", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"2", "*", "mp"}], ")"}]}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"mp", "^", "2"}], "-", 
+        RowBox[{"mK", "^", "2"}]}], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Prefactors", " ", "calculation"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Kepi", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"pepi", "/", 
+        RowBox[{"(", 
+         RowBox[{"16", "*", "Pi", "*", 
+          RowBox[{"mp", "^", "2"}]}], ")"}]}], ")"}], "*", 
+      RowBox[{"AL", "^", "2"}], "*", 
+      RowBox[{"W0", "^", "2"}], "*", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"mp", "^", "2"}], "+", 
+        RowBox[{"me", "^", "2"}], "-", 
+        RowBox[{"mpi0", "^", "2"}]}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Kmupi", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"pmupi", "/", 
+        RowBox[{"(", 
+         RowBox[{"16", "*", "Pi", "*", 
+          RowBox[{"mp", "^", "2"}]}], ")"}]}], ")"}], "*", 
+      RowBox[{"AL", "^", "2"}], "*", 
+      RowBox[{"W0", "^", "2"}], "*", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"mp", "^", "2"}], "+", 
+        RowBox[{"mmu", "^", "2"}], "-", 
+        RowBox[{"mpi0", "^", "2"}]}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Knupi", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"pnuPi", "/", 
+        RowBox[{"(", 
+         RowBox[{"16", "*", "Pi", "*", 
+          RowBox[{"mp", "^", "2"}]}], ")"}]}], ")"}], "*", 
+      RowBox[{"AL", "^", "2"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"2", "*", 
+        RowBox[{"W0", "^", "2"}]}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"mp", "^", "2"}], "-", 
+        RowBox[{"mpiPlus", "^", "2"}]}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Knuk", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"pnuK", "/", 
+        RowBox[{"(", 
+         RowBox[{"16", "*", "Pi", "*", 
+          RowBox[{"mp", "^", "2"}]}], ")"}]}], ")"}], "*", 
+      RowBox[{"AL", "^", "2"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"W0K", "^", "2"}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"mp", "^", "2"}], "-", 
+        RowBox[{"mK", "^", "2"}]}], ")"}]}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.991968272885681*^9, 3.991968326322021*^9}, {
+  3.99196838140386*^9, 3.99196839415982*^9}, {3.991968496330252*^9, 
+  3.991968525459083*^9}, {3.991968565515211*^9, 3.991968599256071*^9}, {
+  3.991969403011732*^9, 3.9919694302621503`*^9}, {3.9919696186366825`*^9, 
+  3.991969624307216*^9}, {3.995884043694605*^9, 3.995884049928295*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"fcf72ccf-96b3-6e4c-a53d-cf74f6491810"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"--", 
+     RowBox[{"-", " ", 
+      RowBox[{"RESULTS", " ", "--"}]}]}], "-"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"dataK", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\"\<Decay channel\>\"", ",", "\"\<K prefactor (GeV)\>\""}], 
+        "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<p \[RightArrow] e+ pi0\>\"", ",", 
+         RowBox[{"ScientificForm", "[", 
+          RowBox[{"Kepi", ",", "4"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<p \[RightArrow] mu+ pi0\>\"", ",", 
+         RowBox[{"ScientificForm", "[", 
+          RowBox[{"Kmupi", ",", "4"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<p \[RightArrow] nu pi+\>\"", ",", 
+         RowBox[{"ScientificForm", "[", 
+          RowBox[{"Knupi", ",", "4"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<p \[RightArrow] nu K+\>\"", ",", 
+         RowBox[{"ScientificForm", "[", 
+          RowBox[{"Knuk", ",", "4"}], "]"}]}], "}"}]}], "}"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Table", " ", "style"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Grid", "[", 
+    RowBox[{"dataK", ",", 
+     RowBox[{"Frame", "->", "All"}], ",", 
+     RowBox[{"Background", "->", 
+      RowBox[{"{", 
+       RowBox[{"None", ",", 
+        RowBox[{"{", 
+         RowBox[{"LightBlue", ",", "White"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"Alignment", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Left", ",", "Right"}], "}"}], ",", "Center"}], "}"}]}], ",", 
+     RowBox[{"Spacings", "->", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", "1"}], "}"}]}], ",", 
+     RowBox[{"ItemStyle", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"FontFamily", "->", "\"\<Helvetica\>\""}], ",", "14"}], 
+         "]"}], ",", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"FontFamily", "->", "\"\<Courier\>\""}], ",", "14"}], 
+         "]"}]}], "}"}]}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.991969488311497*^9, 3.991969521998861*^9}, {
+  3.9919695893588676`*^9, 3.991969629595714*^9}, {3.99196967369112*^9, 
+  3.9919696878852787`*^9}, {3.991969936783966*^9, 3.991970048517311*^9}},
+ CellLabel->"In[19]:=",ExpressionUUID->"abf260be-7e16-d645-8aea-693bfadf811b"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"Decay channel\"\>", "\<\"K prefactor (GeV)\"\>"},
+    {"\<\"p \[RightArrow] e+ pi0\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox[
+        RowBox[{"\<\"9.896\"\>", "\[Times]", 
+         SuperscriptBox["10", "\<\"-4\"\>"]}],
+        ShowStringCharacters->False],
+       0.0009895698766298274,
+       AutoDelete->True],
+      ScientificForm[#, 4]& ]},
+    {"\<\"p \[RightArrow] mu+ pi0\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox[
+        RowBox[{"\<\"9.888\"\>", "\[Times]", 
+         SuperscriptBox["10", "\<\"-4\"\>"]}],
+        ShowStringCharacters->False],
+       0.000988847971120243,
+       AutoDelete->True],
+      ScientificForm[#, 4]& ]},
+    {"\<\"p \[RightArrow] nu pi+\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox[
+        RowBox[{"\<\"1.973\"\>", "\[Times]", 
+         SuperscriptBox["10", "\<\"-3\"\>"]}],
+        ShowStringCharacters->False],
+       0.0019733581549595245`,
+       AutoDelete->True],
+      ScientificForm[#, 4]& ]},
+    {"\<\"p \[RightArrow] nu K+\"\>", 
+     TagBox[
+      InterpretationBox[
+       StyleBox[
+        RowBox[{"\<\"1.762\"\>", "\[Times]", 
+         SuperscriptBox["10", "\<\"-4\"\>"]}],
+        ShowStringCharacters->False],
+       0.0001761971774222006,
+       AutoDelete->True],
+      ScientificForm[#, 4]& ]}
+   },
+   AutoDelete->False,
+   GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+   GridBoxBackground->{"Columns" -> {{None}}, "Rows" -> {
+       RGBColor[0.87, 0.94, 1], 
+       GrayLevel[1]}},
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+   GridBoxItemStyle->{"Columns" -> {{
+        Directive[FontFamily -> "Helvetica", 14]}}, "Rows" -> {{
+        Directive[FontFamily -> "Courier", 14]}}},
+   GridBoxSpacings->{"Columns" -> {{2}}, "Rows" -> {{1}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{
+  3.991969955248396*^9, {3.991969996393007*^9, 3.991970049652478*^9}, 
+   3.9919859486297607`*^9, 3.9958840565802536`*^9},
+ CellLabel->"Out[20]=",ExpressionUUID->"ccbcfdb1-9864-b749-a166-4cc835b8a2b1"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{478, 525.5},
+WindowMargins->{{-4.5, Automatic}, {Automatic, 0}},
+FrontEndVersion->"14.0 para Microsoft Windows (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"50c84716-0130-8e46-bf5f-3a7c78b7d2a4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 177, 3, 98, "Title",ExpressionUUID->"1f83434b-17da-d244-a41a-40988751a78c"],
+Cell[760, 27, 254, 6, 85, "Subtitle",ExpressionUUID->"86649147-b889-7d49-a1b7-36aebaa343c5"],
+Cell[1017, 35, 1933, 44, 219, "Input",ExpressionUUID->"16712786-3d52-0a4d-949a-10690e808e68"],
+Cell[CellGroupData[{
+Cell[2975, 83, 206, 4, 69, "Chapter",ExpressionUUID->"82053abc-4fcc-3442-850d-802e6a2344d5"],
+Cell[3184, 89, 4491, 135, 315, "Input",ExpressionUUID->"fcf72ccf-96b3-6e4c-a53d-cf74f6491810"],
+Cell[CellGroupData[{
+Cell[7700, 228, 2490, 65, 472, "Input",ExpressionUUID->"abf260be-7e16-d645-8aea-693bfadf811b"],
+Cell[10193, 295, 2156, 59, 172, "Output",ExpressionUUID->"ccbcfdb1-9864-b749-a166-4cc835b8a2b1"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
